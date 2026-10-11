@@ -15,11 +15,26 @@
 
 > 只需操作一次。
 
-1. 打开仓库 **Settings → Pages**
-2. **Build and deployment → Source** 选择 **GitHub Actions**（不要选 "Deploy from a branch"）
-3. 保存即可
+### 1. 解除 Fork 关系（重要！）
+
+本仓库是从 `CuteLeaf/Firefly` fork 而来，**GitHub 默认禁用 fork 仓库的 Actions**，
+这是导致推送后工作流不触发、线上 404 的根本原因。
+
+**Settings → General → 拉到最底部 Danger Zone → Leave fork network**
+
+> 该操作非破坏性：保留全部提交历史。但不可逆（无法再连回 fork 网络）。
+
+### 2. 启用 GitHub Actions
+
+**Settings → Actions → General → Actions permissions**
+选择 **Allow all actions and reusable workflows** → Save
+
+### 3. 启用 GitHub Pages
+
+**Settings → Pages → Build and deployment → Source** 选择 **GitHub Actions**
 
 之后每次 `git push` 到 `master`，会自动触发 `.github/workflows/deploy.yml` 完成构建与部署。
+
 
 ## 三、日常发布流程
 
@@ -84,6 +99,12 @@ Zen Maru Gothic / Inter / JetBrains Mono 已改为 **local provider**，
 
 ## 六、常见问题
 
+**Q: 推送后线上 404，Actions 里一条运行记录都没有？**
+A: 最典型的原因是**仓库是 fork，Actions 被 GitHub 默认禁用**。
+去 Settings → General → Danger Zone → Leave fork network 解除 fork，
+再到 Settings → Actions → General 选择 Allow all actions，然后重新 push 一次。
+可用 API 自查：`curl https://api.github.com/repos/<user>/<repo>` 看 `"fork"` 字段。
+
 **Q: 部署后页面白屏 / 静态资源 404？**
 A: 通常是 base 配置问题。确认仓库是「项目仓库」（地址含 `/dr0wsblog`），
 并且 `deploy.yml` 构建时注入了 `GH_PAGES_BASE`。
@@ -94,3 +115,4 @@ A: 说明字体仍走 CDN。检查 `fontConfig.ts` 中三个字体是否为 `pro
 **Q: 想换自定义域名？**
 A: 在 `public/` 放置 `CNAME` 文件写入域名；同时把 `site_url` 改为域名，
 并把 `astro.config.mjs` 的 `base` 恢复为 `/`（不再注入 `GH_PAGES_BASE`）。
+
