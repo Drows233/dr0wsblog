@@ -65,11 +65,15 @@ const adapter = process.env.CF_WORKERS
 		})
 	: undefined;
 
+// GitHub Pages（项目仓库）支持：部署到 https://<user>.github.io/<repo>/ 时
+// 通过环境变量 GH_PAGES_BASE 注入子路径（如 "/dr0wsblog"），本地构建则保持 "/"。
+const ghPagesBase = process.env.GH_PAGES_BASE || "/";
+
 // https://astro.build/config
 export default defineConfig({
 	site: siteConfig.site_url,
 
-	base: "/",
+	base: ghPagesBase,
 	trailingSlash: "always",
 
 	// 字体配置 - 只加载实际使用的字体，跳过未引用的以加快构建
