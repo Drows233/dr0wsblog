@@ -44,18 +44,17 @@ export const siteConfig: SiteConfig = {
 	// 站点标题
 	title: "dr0wsblog",
 
-	// 站点副标题
-	subtitle: "beat maker / 独立音乐制作人",
+	// 站点副标题（留空则浏览器标签页只显示站点标题）
+	subtitle: "",
 
 	// 站点 URL
 	site_url: "https://drows233.github.io/dr0wsblog",
 
 	// 站点描述
-	description:
-		"dr0ws 的个人博客 —— beat 创作、Trap / Drill / Boom Bap / Lo-Fi / R&B / Hyperpop 伴奏制作与分享。",
+	description: "dr0ws 的个人博客。",
 
 	// 站点关键词
-	keywords: ["dr0ws", "beat", "伴奏", "音乐制作", "Trap", "Drill", "博客"],
+	keywords: ["dr0ws", "博客"],
 
 	// 主题色
 	themeColor: {
