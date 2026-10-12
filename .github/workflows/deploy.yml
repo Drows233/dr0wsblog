@@ -22,21 +22,58 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-          
+
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
           version: 11.22.0
           run_install: false
-          
+
+      # 把构建环境写进 job summary，便于排查（无需登录即可通过 API 读取）
+      - name: Environment info
+        run: |
+          {
+            echo "### 构建环境"
+            echo ""
+            echo "- node: \`$(node -v)\`"
+            echo "- pnpm: \`$(pnpm -v)\`"
+            echo ""
+            echo "<details><summary>.npmrc</summary>"
+            echo ""
+            echo '```'
+            cat .npmrc 2>/dev/null || echo "(无)"
+            echo '```'
+            echo "</details>"
+            echo ""
+            echo "<details><summary>pnpm-workspace.yaml</summary>"
+            echo ""
+            echo '```'
+            cat pnpm-workspace.yaml 2>/dev/null || echo "(无)"
+            echo '```'
+            echo "</details>"
+          } >> "$GITHUB_STEP_SUMMARY"
+
       - name: Install dependencies
-        run: pnpm install --no-frozen-lockfile
-      
+        run: |
+          if ! pnpm install --frozen-lockfile --reporter=append-only > /tmp/install.log 2>&1; then
+            {
+              echo "### pnpm install 失败"
+              echo ""
+              echo '```'
+              tail -c 6000 /tmp/install.log
+              echo '```'
+            } >> "$GITHUB_STEP_SUMMARY"
+            echo "===== install.log (tail 120) ====="
+            tail -120 /tmp/install.log
+            exit 1
+          fi
+          tail -20 /tmp/install.log
+
       - name: Build site
         run: pnpm run build
         env:
@@ -45,7 +82,7 @@ jobs:
 
       - name: Create .nojekyll file
         run: touch dist/.nojekyll
-      
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
