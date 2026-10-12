@@ -21,15 +21,15 @@ export const sponsorConfig: SponsorConfig = {
 
 	// 打赏方式列表
 	methods: [
-		// 添加打赏方式示例：
-		// {
-		// 	name: "支付宝",
-		// 	icon: "fa7-brands:alipay",
-		// 	qrCode: "/assets/images/sponsor/alipay.png",
-		// 	link: "",
-		// 	description: "使用 支付宝 扫码打赏",
-		// 	enabled: true,
-		// },
+		{
+			name: "微信",
+			icon: "fa7-brands:weixin",
+			// 收款码图片路径（需要放在 public 目录下）
+			qrCode: "/assets/images/sponsor/wechat.jpg",
+			link: "",
+			description: "使用 微信 扫码打赏",
+			enabled: true,
+		},
 	],
 
 	// 打赏者列表（可选）
