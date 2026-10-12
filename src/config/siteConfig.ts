@@ -55,15 +55,7 @@ export const siteConfig: SiteConfig = {
 		"dr0ws 的个人博客 —— beat 创作、Trap / Drill / Boom Bap / Lo-Fi / R&B / Hyperpop 伴奏制作与分享。",
 
 	// 站点关键词
-	keywords: [
-		"dr0ws",
-		"beat",
-		"伴奏",
-		"音乐制作",
-		"Trap",
-		"Drill",
-		"博客",
-	],
+	keywords: ["dr0ws", "beat", "伴奏", "音乐制作", "Trap", "Drill", "博客"],
 
 	// 主题色
 	themeColor: {

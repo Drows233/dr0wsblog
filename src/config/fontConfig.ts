@@ -34,22 +34,30 @@ export const fontsList: FontDefinition[] = [
 		options: {
 			variants: [
 				{
-					src: ["./node_modules/@fontsource/zen-maru-gothic/files/zen-maru-gothic-latin-300-normal.woff2"],
+					src: [
+						"./node_modules/@fontsource/zen-maru-gothic/files/zen-maru-gothic-latin-300-normal.woff2",
+					],
 					weight: "300",
 					style: "normal",
 				},
 				{
-					src: ["./node_modules/@fontsource/zen-maru-gothic/files/zen-maru-gothic-latin-400-normal.woff2"],
+					src: [
+						"./node_modules/@fontsource/zen-maru-gothic/files/zen-maru-gothic-latin-400-normal.woff2",
+					],
 					weight: "400",
 					style: "normal",
 				},
 				{
-					src: ["./node_modules/@fontsource/zen-maru-gothic/files/zen-maru-gothic-latin-500-normal.woff2"],
+					src: [
+						"./node_modules/@fontsource/zen-maru-gothic/files/zen-maru-gothic-latin-500-normal.woff2",
+					],
 					weight: "500",
 					style: "normal",
 				},
 				{
-					src: ["./node_modules/@fontsource/zen-maru-gothic/files/zen-maru-gothic-latin-700-normal.woff2"],
+					src: [
+						"./node_modules/@fontsource/zen-maru-gothic/files/zen-maru-gothic-latin-700-normal.woff2",
+					],
 					weight: "700",
 					style: "normal",
 				},
@@ -64,27 +72,37 @@ export const fontsList: FontDefinition[] = [
 		options: {
 			variants: [
 				{
-					src: ["./node_modules/@fontsource/inter/files/inter-latin-300-normal.woff2"],
+					src: [
+						"./node_modules/@fontsource/inter/files/inter-latin-300-normal.woff2",
+					],
 					weight: "300",
 					style: "normal",
 				},
 				{
-					src: ["./node_modules/@fontsource/inter/files/inter-latin-400-normal.woff2"],
+					src: [
+						"./node_modules/@fontsource/inter/files/inter-latin-400-normal.woff2",
+					],
 					weight: "400",
 					style: "normal",
 				},
 				{
-					src: ["./node_modules/@fontsource/inter/files/inter-latin-500-normal.woff2"],
+					src: [
+						"./node_modules/@fontsource/inter/files/inter-latin-500-normal.woff2",
+					],
 					weight: "500",
 					style: "normal",
 				},
 				{
-					src: ["./node_modules/@fontsource/inter/files/inter-latin-600-normal.woff2"],
+					src: [
+						"./node_modules/@fontsource/inter/files/inter-latin-600-normal.woff2",
+					],
 					weight: "600",
 					style: "normal",
 				},
 				{
-					src: ["./node_modules/@fontsource/inter/files/inter-latin-700-normal.woff2"],
+					src: [
+						"./node_modules/@fontsource/inter/files/inter-latin-700-normal.woff2",
+					],
 					weight: "700",
 					style: "normal",
 				},
@@ -99,12 +117,16 @@ export const fontsList: FontDefinition[] = [
 		options: {
 			variants: [
 				{
-					src: ["./node_modules/@fontsource/jetbrains-mono/files/jetbrains-mono-latin-400-normal.woff2"],
+					src: [
+						"./node_modules/@fontsource/jetbrains-mono/files/jetbrains-mono-latin-400-normal.woff2",
+					],
 					weight: "400",
 					style: "normal",
 				},
 				{
-					src: ["./node_modules/@fontsource/jetbrains-mono/files/jetbrains-mono-latin-700-normal.woff2"],
+					src: [
+						"./node_modules/@fontsource/jetbrains-mono/files/jetbrains-mono-latin-700-normal.woff2",
+					],
 					weight: "700",
 					style: "normal",
 				},
