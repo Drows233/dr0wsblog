@@ -60,16 +60,27 @@ jobs:
 
       - name: Install dependencies
         run: |
-          if ! pnpm install --frozen-lockfile --reporter=append-only > /tmp/install.log 2>&1; then
+          set +e
+          pnpm install --frozen-lockfile --reporter=append-only > /tmp/install.log 2>&1
+          CODE=$?
+          if [ "$CODE" -ne 0 ]; then
             {
-              echo "### pnpm install 失败"
+              echo "### pnpm install failed (exit $CODE)"
               echo ""
               echo '```'
               tail -c 6000 /tmp/install.log
               echo '```'
             } >> "$GITHUB_STEP_SUMMARY"
-            echo "===== install.log (tail 120) ====="
-            tail -120 /tmp/install.log
+            echo "--- install.log head ---"
+            head -c 900 /tmp/install.log
+            echo
+            echo "--- install.log tail ---"
+            tail -60 /tmp/install.log
+            # 以 annotation 形式输出（公开仓库可通过 API 匿名读取）
+            HEAD_MSG=$(head -c 700 /tmp/install.log | sed -e 's/%/%25/g' -e 's/\r//g' | awk '{printf "%s%%0A", $0}')
+            TAIL_MSG=$(tail -c 1500 /tmp/install.log | sed -e 's/%/%25/g' -e 's/\r//g' | awk '{printf "%s%%0A", $0}')
+            echo "::error title=install-log-head::$HEAD_MSG"
+            echo "::error title=install-log-tail::$TAIL_MSG"
             exit 1
           fi
           tail -20 /tmp/install.log
