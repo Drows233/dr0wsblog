@@ -24,13 +24,19 @@ export const profileConfig: ProfileConfig = {
 		{
 			name: "GitHub",
 			icon: "fa7-brands:github",
-			url: "https://github.com/Drows233",
+			url: "https://github.com/Drows233?tab=repositories",
+			showName: false,
+		},
+		{
+			name: "Bilibili",
+			icon: "fa7-brands:bilibili",
+			url: "https://space.bilibili.com/660093857?spm_id_from=333.1007.0.0",
 			showName: false,
 		},
 		{
 			name: "Email",
 			icon: "fa7-solid:envelope",
-			url: "mailto:drows233@example.com",
+			url: "mailto:3241331589@qq.com",
 			showName: false,
 		},
 		{
