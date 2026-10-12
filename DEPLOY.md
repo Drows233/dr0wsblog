@@ -92,6 +92,11 @@ Zen Maru Gothic / Inter / JetBrains Mono 已改为 **local provider**，
 直接引用 `node_modules/@fontsource/*` 中的 woff2 文件，
 保证离线与 CI 环境都能稳定构建。
 
+> ⚠️ **版本必须固定（不要用 `^`）**：pnpm 11 默认开启 `minimumReleaseAge = 1 天`
+> 供应链策略，会拒绝安装「发布不足 24 小时」的包，导致 CI 报
+> `ERR_PNPM_MINIMUM_RELEASE_AGE_VIOLATION`。因此这三个字体在 `package.json`
+> 中均固定为确切版本（如 `5.3.0`），升级前请确认目标版本已发布超过一天。
+
 ### 4. 站点信息
 
 - `src/config/siteConfig.ts` — 标题、副标题、描述、关键词
@@ -111,6 +116,17 @@ A: 通常是 base 配置问题。确认仓库是「项目仓库」（地址含 `
 
 **Q: Actions 构建失败在字体的 `CannotFetchFontFile`？**
 A: 说明字体仍走 CDN。检查 `fontConfig.ts` 中三个字体是否为 `provider: "local"`。
+
+**Q: CI 在 Install dependencies 报 `ERR_PNPM_MINIMUM_RELEASE_AGE_VIOLATION`？**
+A: pnpm 11 默认拒绝安装发布不足 24 小时的包。把 `package.json` 里对应的
+`@fontsource/*` 等依赖降到「发布超过一天」的版本，然后本地执行
+`pnpm install --lockfile-only` 重新生成 `pnpm-lock.yaml` 再提交。
+（不要用 `^` 范围，否则每次解析都可能踩到刚发布的新版本。）
+
+**Q: 部署成功了，但打开页面白屏、CSS/图片 404？**
+A: 多半是 GitHub Pages CDN 正在传播，`_astro/` 目录下的资源会稍晚生效，
+**等 1～2 分钟**再刷新即可。判断方法：`_astro/xxx.css` 与 `pagefind/pagefind.js`
+都应返回 200。
 
 **Q: 想换自定义域名？**
 A: 在 `public/` 放置 `CNAME` 文件写入域名；同时把 `site_url` 改为域名，
