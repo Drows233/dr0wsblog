@@ -5,6 +5,7 @@ description: 束缚的爱，何时能解脱。
 tags: [muzic, idk]
 category: 随笔
 image: ./images/idk.jpg
+draft: true
 ---
 
 这是我的第一篇文章吧，这里不是朋友圈，我可以想写什么就写什么，想把文字打成散沙以表达我的心情。
