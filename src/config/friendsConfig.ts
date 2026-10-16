@@ -22,6 +22,15 @@ export const friendsPageConfig: FriendsPageConfig = {
 
 // 友链配置
 export const friendsConfig: FriendLink[] = [
+	{
+		title: "JustPureH2O 的博客",
+		imgurl: "https://justpureh2o.cn/avatar1.jpg",
+		desc: "高中文化课知识整理 · 信息竞赛算法与题解 · 校园趣事",
+		siteurl: "https://justpureh2o.cn/",
+		tags: ["博客"],
+		weight: 10, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
 	// 添加友链示例：
 	// {
 	// 	title: "站点名称",
